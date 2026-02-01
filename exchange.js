@@ -3,8 +3,8 @@ const currency = document.getElementById("currency");
 const convert = document.getElementById("convert");
 const result = document.getElementById("result");
 
-const apiKey = "";
-const apiURL = "";
+const apiKey = "XWQLeZ/lvaZjogmMMb+phA==958sWAqRpexI07bS";
+const apiURL = "https://api.api-ninjas.com/v1/exchangerate?pair=GBP_";
 
 convert.addEventListener("click", () => {
   const amountTotal = amount.value;
@@ -17,10 +17,12 @@ convert.addEventListener("click", () => {
     },
   })
     .then((response) => response.json())
-    .then((date) => {
-      const rate = data.rate;
-      const result = amountTotal * rate;
-      result.innerHTML = `${amount} ${currency} = ${result.toFixed(2)} GBP`;
+    .then((data) => {
+      const rate = data.exchange_rate;
+      const resultPrice = amountTotal * rate;
+      result.innerHTML = `${amount} ${currency} = ${resultPrice.toFixed(
+        2
+      )} GBP`;
     })
     .catch((error) => {
       console.error(`Request failed`, error);
