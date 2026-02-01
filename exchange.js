@@ -1,4 +1,29 @@
 const amount = document.getElementById("amount");
-const currenmcy = document.getElementById("currency");
+const currency = document.getElementById("currency");
 const convert = document.getElementById("convert");
 const result = document.getElementById("result");
+
+const apiKey = "";
+const apiURL = "";
+
+convert.addEventListener("click", () => {
+  const amountTotal = amount.value;
+  const currencyTotal = currency.value;
+  const url = apiURL + currencyTotal;
+
+  fetch(url, {
+    headers: {
+      "X-API-KEY": apiKey,
+    },
+  })
+    .then((response) => response.json())
+    .then((date) => {
+      const rate = data.rate;
+      const result = amountTotal * rate;
+      result.innerHTML = `${amount} ${currency} = ${result.toFixed(2)} GBP`;
+    })
+    .catch((error) => {
+      console.error(`Request failed`, error);
+      result.innerHTML = "An error occured. Please try again later.";
+    });
+});
